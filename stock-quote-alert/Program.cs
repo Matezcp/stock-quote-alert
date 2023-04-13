@@ -15,10 +15,6 @@ namespace stock_quote_alert
                 if (stockArgsDto == null)
                     return;
 
-                //Console.WriteLine(stockQuote);
-                //Console.WriteLine(stockSellPrice);
-                //Console.WriteLine(stockBuyPrice);
-
                 await MonitorePrice(stockArgsDto);
             }
             catch (Exception ex)
