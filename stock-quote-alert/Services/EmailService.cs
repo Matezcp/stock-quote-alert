@@ -22,7 +22,7 @@ namespace stock_quote_alert.Services
                 dynamic? configs = null;
 
                 // Read the configs in configs json
-                StreamReader r = new("../../../Configs/emailSettings.json");
+                StreamReader r = new("Configs/emailSettings.json");
                 if(r != null)
                 {
                     string? json = null;
