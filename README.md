@@ -41,3 +41,21 @@ O template em questão pode ser observado abaixo:
   "EmailTo": "example@gmail.com"
 }
 ```
+## Setup:
+---------------------------  
+1. Clone o repositório:
+
+   ```bash
+   $ git clone https://github.com/Matezcp/stock-quote-alert.git
+   ```
+   
+   ou baixa como zip e o extraia.
+2. Vá para a pasta "stock-quote-alert"
+3. Arrume o arquivo de configurações conforme as instruções passadas na seção anterior "Arquivo de configurações"
+4. Execute o .exe conforme escrito nos requistos, exemplo:  
+
+   ```bash
+   ./stock-quote-alert.exe PETR4 22.67 22.59
+   ```
+   
+   Lembrando que os argumentos são: ticker do ativo, preço de venda e preço de compra, respectivamente.
