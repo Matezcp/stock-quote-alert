@@ -32,7 +32,7 @@ namespace stock_quote_alert.Services
             }
             else
             {
-                Console.WriteLine("Request failed with status code " + response.StatusCode);
+                Console.WriteLine("Consulta falhou com código de erro: " + response.StatusCode);
             }
 
             return price;

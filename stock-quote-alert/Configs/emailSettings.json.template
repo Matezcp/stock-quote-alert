@@ -1,0 +1,9 @@
+{
+  "Username": "example@gmail.com",
+  "Password": "password",
+  "Host": "smtp.gmail.com",
+  "Port": 587,
+  "EnableSSL": true,
+  "UseDefaultCredentials": false,
+  "EmailTo": "example@gmail.com"
+}
