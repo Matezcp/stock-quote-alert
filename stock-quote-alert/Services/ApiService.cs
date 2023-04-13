@@ -16,7 +16,7 @@ namespace stock_quote_alert.Services
         {
             HttpClient httpClient = new HttpClient();
 
-            var response = await httpClient.GetAsync("https://brapi.dev/api/quote/" + stockQuote);
+            var response = await httpClient.GetAsync($"https://brapi.dev/api/quote/{stockQuote}");
 
             double? price = null;
 

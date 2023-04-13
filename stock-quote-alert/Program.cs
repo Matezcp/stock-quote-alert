@@ -75,6 +75,8 @@ namespace stock_quote_alert
             // Make First api request to verify if quote is valid
             double? actualPrice = await apiService.GetStockPrice(stockArgsDto.quote);
 
+            DateTime lastCall = DateTime.UtcNow;
+
             if (actualPrice == null)
                 return;
 
@@ -95,29 +97,36 @@ namespace stock_quote_alert
                 if (sendSellEmail && actualPrice >= stockArgsDto.sellPrice)
                 {
                     string subject = $"Recomendação de Venda - {stockArgsDto.quote}";
-                    string body = $"RECOMENDAÇÃO DE VENDA - : {stockArgsDto.quote}\n" +
+                    string body = $"RECOMENDAÇÃO DE VENDA - {stockArgsDto.quote}\n" +
                         $"Preço de Venda Alvo: {stockArgsDto.sellPrice}\n" +
                         $"Preço atual: {actualPrice}";
 
-                    Console.WriteLine("Recomendação de Venda Enviada");
+                    Console.WriteLine($"Recomendação de Venda Enviada - Preço: {actualPrice}");
                     emailService.sendEmail(body,subject);
 
-                    sendSellEmail = false;  
+                    sendSellEmail = false;
                 }
                 else if (sendBuyEmail && actualPrice <= stockArgsDto.buyPrice)
                 {
                     string subject = $"Recomendação de Compra - {stockArgsDto.quote}";
-                    string body = $"RECOMENDAÇÃO DE COMPRA - : {stockArgsDto.quote}\n" +
+                    string body = $"RECOMENDAÇÃO DE COMPRA - {stockArgsDto.quote}\n" +
                         $"Preço de Compra Alvo: {stockArgsDto.buyPrice}\n" +
                         $"Preço atual: {actualPrice}";
 
-                    Console.WriteLine("Recomendação de Compra Enviada");
+                    Console.WriteLine($"Recomendação de Compra Enviada - Preço: {actualPrice}");
                     emailService.sendEmail(body, subject);
 
                     sendBuyEmail = false;
                 }
 
-                actualPrice = await apiService.GetStockPrice(stockArgsDto.quote);
+                // This api updates every 15 minute
+                // I decided to make a call every 5 minutes so as not to miss any information by accident
+                if(DateTime.UtcNow.Subtract(lastCall) > TimeSpan.FromMinutes(5))
+                {
+                    actualPrice = await apiService.GetStockPrice(stockArgsDto.quote);
+                    lastCall = DateTime.UtcNow;
+                }
+                
             }
         }
     }
