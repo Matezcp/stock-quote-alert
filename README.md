@@ -42,7 +42,6 @@ O template em questão pode ser observado abaixo:
 }
 ```
 ## Setup:
----------------------------  
 1. Clone o repositório:
 
    ```bash
@@ -58,4 +57,9 @@ O template em questão pode ser observado abaixo:
    ./stock-quote-alert.exe PETR4 22.67 22.59
    ```
    
-   Lembrando que os argumentos são: ticker do ativo, preço de venda e preço de compra, respectivamente.
+   Lembrando que os argumentos são: ticker do ativo, preço de venda e preço de compra, respectivamente.  
+   
+   
+ ## Limitações:
+ 
+ A API utilizada para o monitoramento do preço das ações é atualizada apenas de 15 em 15 minutos, deste modo o monitoramento acaba se limitando há esse tempo, porém o código pode ser adaptado rapidamente para a utilização de alguma outra API mais eficiente.
